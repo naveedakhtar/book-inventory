@@ -5,7 +5,7 @@ module.exports = function(stockRepository) {
                 if (result !== null) {
                     res.format({
                         'text/html': function() {
-                            res.send('<p>' + result + '</p>');
+                            res.send('<p>In stock: ' + result + '</p>');
                         },
                         'application/json': function() {
                             res.status(200).json({count: result});
