@@ -3,16 +3,25 @@ module.exports = function(stockRepository) {
         getCount: function (req, res) {
             stockRepository.getCount(req.params.isbn).then(function (result) {
                 if (result !== null) {
+                    res.status(200);
                     res.format({
                         'text/html': function() {
                             res.send('<p>In stock: ' + result + '</p>');
                         },
                         'application/json': function() {
-                            res.status(200).json({count: result});
+                            res.json({count: result});
                         }
                     });
                 } else {
-                    res.status(404).json({error: 'No book with ISBN: ' + req.params.isbn});
+                    res.status(404);
+                    res.format({
+                        'text/html': function() {
+                            res.send('<p>No book with ISBN: ' + req.params.isbn + '</p>');
+                        },
+                        'application/json': function() {
+                            res.json({error: 'No book with ISBN: ' + req.params.isbn});
+                        }
+                    });
                 }
             });
         },
