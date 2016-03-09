@@ -21,7 +21,14 @@ module.exports = function(stockRepository) {
             stockRepository.
                 findAll().
                 then(function (books) {
-                    res.json(books);
+                    res.format({
+                        'text/html': function() {
+                            res.send('<p>' + books + '</p>');
+                        },
+                        'application/json': function() {
+                            res.json(books);
+                        }
+                    });
                 }).
                 catch(next);
         }
