@@ -24,7 +24,7 @@ module.exports = function(stockRepository) {
                 }).
                 catch(next);
         },
-        getCount: function (req, res, next) {
+        getAll: function (req, res, next) {
             stockRepository.
                 findAll().
                 then(function (books) {

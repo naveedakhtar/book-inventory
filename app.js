@@ -9,7 +9,7 @@ module.exports = function(stockRepository) {
 
     var routes = require('./routes')(stockRepository);
 
-    app.get('/stock', routes.getCount);
+    app.get('/stock', routes.getAll);
     app.post('/stock', routes.stockUp);
     app.get('/stock/:isbn', routes.getCount);
 
